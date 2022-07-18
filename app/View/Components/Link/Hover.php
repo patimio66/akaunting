@@ -3,11 +3,11 @@
 namespace App\View\Components\Link;
 
 use App\Abstracts\View\Component;
-use Illuminate\Support\Str;
 
 class Hover extends Component
 {
     public $color;
+
     public $groupHover;
 
     /**

@@ -75,6 +75,7 @@ const app = new Vue({
                 ',.',
                 ',,'
             ],
+            email_template: false,
         }
     },
 
@@ -533,6 +534,7 @@ const app = new Vue({
         onDeleteDiscount(item_index) {
             this.items[item_index].add_discount = false;
             this.items[item_index].discount = 0;
+
             this.onCalculateTotal();
         },
 
@@ -696,7 +698,7 @@ const app = new Vue({
 
             let payment = {
                 modal: false,
-                url: url + '/modals/documents/' + document_id + '/transactions/edit/' + transaction_id,
+                url: url + '/modals/documents/' + document_id + '/transactions/' + transaction_id + '/edit',
                 title: '',
                 html: '',
                 buttons:{}
@@ -820,6 +822,16 @@ const app = new Vue({
 
             let email_promise = Promise.resolve(window.axios.get(email.route));
 
+            if (this.email_template) {
+                email_promise = Promise.resolve(window.axios.get(email.route, {
+                    params: {
+                        email_template: this.email_template
+                    }
+                }));
+            }
+
+            this.email_template = false;
+
             email_promise.then(response => {
                 email.modal = true;
                 email.title = response.data.data.title;
@@ -864,6 +876,12 @@ const app = new Vue({
             .finally(function () {
                 // always executed
             });
+        },
+
+        onEmailViaTemplate(route, template) {
+            this.email_template = template;
+
+            this.onEmail(route);
         },
 
         // Change currency get money

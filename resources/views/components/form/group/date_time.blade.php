@@ -2,7 +2,7 @@
 
     <akaunting-date
         @class([
-            'form-group relative',
+            'relative',
             $formGroupClass,
             'required' => $required,
             'readonly' => $readonly,
@@ -19,6 +19,10 @@
 
         @if ($disabled)
         :disabled="{{ $disabled }}"
+        @endif
+
+        @if (!$required)
+        :not-required={{ $required ? 'false' : 'true' }}
         @endif
 
         @if (!empty($attributes['v-error']))

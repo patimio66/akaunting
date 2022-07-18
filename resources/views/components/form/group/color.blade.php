@@ -1,7 +1,7 @@
 @stack($name . '_input_start')
     <akaunting-color
         @class([
-            'form-group relative',
+            'relative',
             $formGroupClass,
             'required' => $required,
             'readonly' => $readonly,
@@ -44,6 +44,10 @@
 
         @if (! empty($attributes['small']))
         small="{{ $attributes['small'] }}"
+        @endif
+
+        @if (!$required)
+        :not-required={{ $required ? 'false' : 'true' }}
         @endif
 
         @if (! empty($attributes['v-model']))

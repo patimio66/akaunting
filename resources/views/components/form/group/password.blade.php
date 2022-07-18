@@ -1,7 +1,7 @@
 @stack($name . '_input_start')
     <div
         @class([
-            'form-group relative',
+            'relative',
             $formGroupClass,
             'required' => $required,
             'readonly' =>  $readonly,
@@ -26,11 +26,10 @@
         @if (! $attributes->has('label') && ! empty($label->contents))
             {!! $label ?? '' !!}
         @elseif (! empty($label))
-            <x-form.label for="{{ $name }}" class="form-control-label">{!! $label !!}</x-form.label>
+            <x-form.label for="{{ $name }}" :required="$required">{!! $label !!}</x-form.label>
         @endif
 
         <div @class([
-                'input-group input-group-merge',
                 $inputGroupClass,
             ])
         >
@@ -43,7 +42,6 @@
             <x-form.input.password
                 name="{{ $name }}"
                 id="{{ $id }}"
-                class="form-element"
                 value="{{ $value }}"
                 placeholder="{{ $placeholder }}"
                 v-model="{{ !empty($attributes['v-model']) ? $attributes['v-model'] : (!empty($attributes['data-field']) ? 'form.' . $attributes['data-field'] . '.' . $name : 'form.' . $name) }}"

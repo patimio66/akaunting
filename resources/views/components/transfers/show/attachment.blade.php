@@ -2,13 +2,13 @@
     <div class="border-b border-gray-200 pb-4" x-data="{ attachment : null }">
         <div class="relative w-full text-left cursor-pointer group" x-on:click="attachment !== 1 ? attachment = 1 : attachment = null">
             <span class="font-medium">
-                <x-link.hover  group-hover>
+                <x-button.hover group-hover>
                     {{ trans_choice('general.attachments', 2) }}
-                </x-link.hover>
+                </x-button.hover>
             </span>
 
             <div class="text-black-400 text-sm">
-                {{ trans_choice('transers.slider.attachments') }}
+                {{ trans('transers.slider.attachments') }}
             </div>
 
             <span class="material-icons absolute right-0 top-0 transition-all transform" x-bind:class="attachment === 1 ? 'rotate-180' : ''">expand_more</span>
@@ -17,10 +17,10 @@
         <div class="overflow-hidden transition-transform origin-top-left ease-linear duration-100"
              x-ref="container1"
              x-bind:class="attachment == 1 ? 'h-auto ' : 'scale-y-0 h-0'"
-             
-                @foreach ($transfer->attachment as $file)
-                    <x-media.file :file="$file" />
-                @endforeach
+         >
+            @foreach ($transfer->attachment as $file)
+                <x-media.file :file="$file" />
+            @endforeach
         </div>
     </div>
 @endif

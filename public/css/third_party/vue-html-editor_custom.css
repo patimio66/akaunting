@@ -3,7 +3,6 @@
 }
 
 .ql-container {
-  height: 18rem !important;
   font-family: "Quicksand", sans-serif !important;
 }
 
@@ -33,6 +32,7 @@
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   font-size: 14px !important;
+  height: auto !important;
 }
 
 .ql-toolbar button:hover {

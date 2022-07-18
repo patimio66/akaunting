@@ -28,7 +28,7 @@ trait Users
         $user = user();
 
         if (empty($user)) {
-            return false;
+            return app()->runningInConsole() ? true : false;
         }
 
         $company = $user->withoutEvents(function () use ($user, $id) {
@@ -110,32 +110,22 @@ trait Users
     }
 
     /**
-     * Checks if the given user has a pending invitation for the
-     * provided Company.
+     * Checks if the given user has a pending invitation.
      *
      * @return bool
      */
-    public function hasPendingInvitation($company_id = null)
+    public function hasPendingInvitation()
     {
-        $company_id = $company_id ?: company_id();
-
-        $invitation = UserInvitation::where('user_id', $this->id)->where('company_id', $company_id)->first();
-
-        return $invitation ? true : false;
+        return $this->getPendingInvitation() ? true : false;
     }
 
     /**
-     * Returns if the given user has a pending invitation for the
-     * provided Company.
+     * Returns if the given user has a pending invitation.
      *
      * @return null|UserInvitation
      */
-    public function getPendingInvitation($company_id = null)
+    public function getPendingInvitation()
     {
-        $company_id = $company_id ?: company_id();
-
-        $invitation = UserInvitation::where('user_id', $this->id)->where('company_id', $company_id)->first();
-
-        return $invitation;
+        return UserInvitation::where('user_id', $this->id)->first();
     }
 }

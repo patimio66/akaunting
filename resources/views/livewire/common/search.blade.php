@@ -1,5 +1,5 @@
 <form wire:click.stop class="navbar-search navbar-search-light form-inline mb-0" id="navbar-search-main" autocomplete="off">
-    <div class="form-group mb-0 mr-sm-3">
+    <div class="mb-0 mr-sm-3">
         <div class="input-group input-group-alternative input-group-merge">
             <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -7,7 +7,7 @@
                 </span>
             </div>
 
-            <input type="text" name="search" wire:model.debounce.500ms="keyword" class="form-element" autocomplete="off" placeholder="{{ trans('general.search') }}">
+            <input type="text" name="search" wire:model.debounce.500ms="keyword" class="text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple" autocomplete="off" placeholder="{{ trans('general.search') }}">
 
             @if ($results)
             <div class="dropdown-menu dropdown-menu-xl dropdown-menu-center show" ref="menu">

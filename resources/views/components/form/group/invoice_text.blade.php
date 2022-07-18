@@ -18,7 +18,7 @@
 >
     <akaunting-select
         @class([
-            'form-group relative',
+            'relative',
             $formGroupClass,
             'required' => $required,
             'readonly' => $readonly,
@@ -139,6 +139,10 @@
 
         @if (isset($attributes['v-disabled']))
         :disabled="{{ $attributes['v-disabled'] }}"
+        @endif
+
+        @if (!$required)
+        :not-required={{ $required ? 'false' : 'true' }}
         @endif
 
         @if (isset($attributes['v-error-message']))
